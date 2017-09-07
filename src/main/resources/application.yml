@@ -10,18 +10,18 @@ spring:
     
 zuul:
   routes:
-    userservice:
-      path: /user/**
-      strPrefix: true    # true 取消/user/ 
-      url: http://localhost:9001/user
+    #userservice:
+      #path: /user/**
+      #strPrefix: true    # true 取消/user/ 
+      #url: http://localhost:9001/user
       
-      strPrefix: false    # false /user/ 
-      url: http://localhost:9001
-    orgservice:
+      #strPrefix: false    # false /user/ 
+      #url: http://localhost:9001
+    feignservice:
       path: /org/**
-      #strPrefix: true
+      strPrefix: true
       #url: http://localhost:9002/org
-      serviceId: users_service
+      serviceId: feignservice
       
 
 #这里的配置表示，访问/baidu/** 直接重定向到http://www.baidu.com
