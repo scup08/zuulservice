@@ -22,7 +22,8 @@ zuul:
       strPrefix: true
       #url: http://localhost:9002/org
       serviceId: feignservice
-      
+    debug:
+      request: true      
 
 #这里的配置表示，访问/baidu/** 直接重定向到http://www.baidu.com
 #zuul.routes.baidu.path=/baidu/**
