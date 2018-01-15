@@ -28,7 +28,7 @@ public class TestFilter extends ZuulFilter{
 //        }  
         
 		System.out.println("pre filter!!!!!!!!!!!!!!!!!!!!!!!!");
-			throw new RuntimeException("hahaha");
+//			throw new RuntimeException("hahaha");
 //		try {
 //		} catch(Exception e) {
 //			ctx.set("error.status_code", HttpServletResponse.SC_BAD_GATEWAY);
@@ -39,7 +39,7 @@ public class TestFilter extends ZuulFilter{
 //        Throwable throwable = ctx.getThrowable();
 //		ctx.set("error.status_code", HttpServletResponse.SC_BAD_GATEWAY);
 //        ctx.set("error.exception", new RuntimeException());
-//		return null;
+		return null;
 	}
 
 	@Override
