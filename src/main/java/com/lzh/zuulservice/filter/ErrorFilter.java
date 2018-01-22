@@ -1,10 +1,9 @@
 package com.lzh.zuulservice.filter;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.cloud.netflix.zuul.util.ZuulRuntimeException;
-import org.springframework.util.StringUtils;
+import org.springframework.stereotype.Component;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
