@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * Created by yangjunming on 2017/7/13.
  */
-@Component
+//@Component
 public class AccessFilter extends ZuulFilter {
 
 	private static Logger logger = LoggerFactory.getLogger(AccessFilter.class);
