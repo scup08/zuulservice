@@ -16,6 +16,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<common.version>0.0.1-SNAPSHOT</common.version>
 	</properties>
 	<dependencyManagement>
 		<dependencies>
@@ -29,7 +30,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
-	
+		<!-- 加载公共包 -->
+		<dependency>
+			<groupId>com.lzh</groupId>
+			<artifactId>common</artifactId>
+			<version>${common.version}</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>

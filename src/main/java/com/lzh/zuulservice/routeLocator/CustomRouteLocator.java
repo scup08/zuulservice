@@ -1,4 +1,4 @@
-package com.lzh.zuulservice.autoConfig;
+package com.lzh.zuulservice.routeLocator;
 
 import java.util.LinkedHashMap;
 import java.util.List;

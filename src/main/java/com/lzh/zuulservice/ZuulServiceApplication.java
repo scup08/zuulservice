@@ -21,14 +21,14 @@ public class ZuulServiceApplication {
         SpringApplication.run(ZuulServiceApplication.class, args);
     }
     
-    @Bean
-	public TestFilter getTestFilter() {
-		return new TestFilter();
-	}
+//    @Bean
+//	public TestFilter getTestFilter() {
+//		return new TestFilter();
+//	}
     
-    @Bean
-	public ErrorFilter getErrorFilter() {
-		return new ErrorFilter();
-	}
+//    @Bean
+//	public ErrorFilter getErrorFilter() {
+//		return new ErrorFilter();
+//	}
     
 }
