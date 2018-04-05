@@ -23,7 +23,7 @@ import java.io.InputStream;
  * @date 2017/9/27
  *
  */
-@Component
+//@Component
 public class AllZuulFallbackHandler implements ZuulFallbackProvider {
 
     /**

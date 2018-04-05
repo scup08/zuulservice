@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzh.zuulservice.persistence.TGatewayApiDefineMapper">
+  <resultMap id="BaseResultMap" type="TGatewayApiDefine">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="service_id" jdbcType="VARCHAR" property="serviceId" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="retryable" jdbcType="BIT" property="retryable" />
+    <result column="enabled" jdbcType="BIT" property="enabled" />
+    <result column="strip_prefix" jdbcType="BIT" property="stripPrefix" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, `path`, service_id, url, retryable, enabled, strip_prefix, remarks
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_gateway_api_define
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from t_gateway_api_define
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="TGatewayApiDefine">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_gateway_api_define (id, `path`, service_id, 
+      url, retryable, enabled, strip_prefix, 
+      remarks)
+    values (#{id,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, #{serviceId,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{retryable,jdbcType=BIT}, #{enabled,jdbcType=BIT}, #{stripPrefix,jdbcType=BIT}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="TGatewayApiDefine">
+    <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into t_gateway_api_define
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      id,
+      <if test="path != null">
+        `path`,
+      </if>
+      <if test="serviceId != null">
+        service_id,
+      </if>
+      <if test="url != null">
+        url,
+      </if>
+      <if test="retryable != null">
+        retryable,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="stripPrefix != null">
+        strip_prefix,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      #{id,jdbcType=BIGINT},
+      <if test="path != null">
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="retryable != null">
+        #{retryable,jdbcType=BIT},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=BIT},
+      </if>
+      <if test="stripPrefix != null">
+        #{stripPrefix,jdbcType=BIT},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="TGatewayApiDefine">
+    update t_gateway_api_define
+    <set>
+      <if test="path != null">
+        `path` = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceId != null">
+        service_id = #{serviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="retryable != null">
+        retryable = #{retryable,jdbcType=BIT},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=BIT},
+      </if>
+      <if test="stripPrefix != null">
+        strip_prefix = #{stripPrefix,jdbcType=BIT},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="TGatewayApiDefine">
+    update t_gateway_api_define
+    set `path` = #{path,jdbcType=VARCHAR},
+      service_id = #{serviceId,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      retryable = #{retryable,jdbcType=BIT},
+      enabled = #{enabled,jdbcType=BIT},
+      strip_prefix = #{stripPrefix,jdbcType=BIT},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  
+  <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_gateway_api_define 
+        <if test="offset >= 0">
+        	limit #{offset}, #{limited}
+      	</if>
+    </select>
+</mapper>

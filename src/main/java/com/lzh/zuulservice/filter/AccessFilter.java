@@ -1,19 +1,18 @@
 package com.lzh.zuulservice.filter;
 
-import com.netflix.zuul.ZuulFilter;
-import com.netflix.zuul.context.RequestContext;
-import org.apache.commons.codec.binary.Base64;
+import javax.servlet.http.HttpServletRequest;
+
+//import org.apache.commons.codec.binary.Base64;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
-import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
+import com.netflix.zuul.ZuulFilter;
+import com.netflix.zuul.context.RequestContext;
 
 /**
- * Created by yangjunming on 2017/7/13.
+ * Created by  on 2017/7/13.
  */
-//@Component
 public class AccessFilter extends ZuulFilter {
 
 	private static Logger logger = LoggerFactory.getLogger(AccessFilter.class);
@@ -35,6 +34,9 @@ public class AccessFilter extends ZuulFilter {
 
 	@Override
 	public Object run() {
+		
+		logger.info("hahahahaaha+++++++++++++++++++++++++++++++++++++");
+		
 		RequestContext ctx = RequestContext.getCurrentContext();
 		HttpServletRequest request = ctx.getRequest();
 
@@ -58,10 +60,10 @@ public class AccessFilter extends ZuulFilter {
 		return null;
 	}
 
-	private String getBase64Credentials(String username, String password) {
-		String plainCreds = username + ":" + password;
-		byte[] plainCredsBytes = plainCreds.getBytes();
-		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
-		return new String(base64CredsBytes);
-	}
+//	private String getBase64Credentials(String username, String password) {
+//		String plainCreds = username + ":" + password;
+//		byte[] plainCredsBytes = plainCreds.getBytes();
+//		byte[] base64CredsBytes = Base64.encodeBase64(plainCredsBytes);
+//		return new String(base64CredsBytes);
+//	}
 }

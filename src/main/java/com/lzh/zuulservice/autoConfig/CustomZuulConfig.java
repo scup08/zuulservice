@@ -5,7 +5,9 @@ import org.springframework.boot.autoconfigure.web.ServerProperties;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.core.JdbcTemplate;  
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.lzh.zuulservice.routeLocator.CustomRouteLocator;  
   
 @Configuration  
 public class CustomZuulConfig {  
@@ -20,7 +22,7 @@ public class CustomZuulConfig {
     @Bean  
     public CustomRouteLocator routeLocator() {  
         CustomRouteLocator routeLocator = new CustomRouteLocator(this.server.getServletPrefix(), this.zuulProperties);  
-        routeLocator.setJdbcTemplate(jdbcTemplate);  
+//        routeLocator.setJdbcTemplate(jdbcTemplate);  
         return routeLocator;  
     }  
   

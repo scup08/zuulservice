@@ -1,4 +1,4 @@
-package com.lzh.zuulservice.autoConfig;
+package com.lzh.zuulservice.routeLocator;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -7,26 +7,30 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.netflix.zuul.filters.RefreshableRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.SimpleRouteLocator;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.util.StringUtils;
 
-import com.lzh.zuulservice.model.ZuulRouteVO;  
+import com.lzh.zuulservice.model.dto.response.ZuulRouteResponse;
+import com.lzh.zuulservice.model.entity.TGatewayApiDefine;
+import com.lzh.zuulservice.persistence.TGatewayApiDefineMapper;  
   
 public class CustomRouteLocator extends SimpleRouteLocator implements RefreshableRouteLocator {  
   
     public final static Logger logger = LoggerFactory.getLogger(CustomRouteLocator.class);  
   
-    private JdbcTemplate jdbcTemplate;  
+//    private JdbcTemplate jdbcTemplate;  
   
     private ZuulProperties properties;  
+    
+    @Autowired  
+    TGatewayApiDefineMapper tGatewayApiDefineMapper;  
   
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {  
-        this.jdbcTemplate = jdbcTemplate;  
-    }  
+//    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {  
+//        this.jdbcTemplate = jdbcTemplate;  
+//    }  
   
     public CustomRouteLocator(String servletPath, ZuulProperties properties) {  
         super(servletPath, properties);  
@@ -74,9 +78,10 @@ public class CustomRouteLocator extends SimpleRouteLocator implements Refreshabl
       
     private Map<String, ZuulProperties.ZuulRoute> locateRoutesFromDB() {  
         Map<String, ZuulProperties.ZuulRoute> routes = new LinkedHashMap<>();  
-        List<ZuulRouteVO> results = jdbcTemplate.query("select * from gateway_api_define where enabled = true ", new  
-                BeanPropertyRowMapper<>(ZuulRouteVO.class));  
-        for (ZuulRouteVO result : results) {  
+//        List<ZuulRouteVO> results = jdbcTemplate.query("select * from gateway_api_define where enabled = true ", new  BeanPropertyRowMapper<>(ZuulRouteVO.class));
+        
+        List<TGatewayApiDefine> results = tGatewayApiDefineMapper.selectAll(-1,-1);
+        for (TGatewayApiDefine result : results) {  
             if (StringUtils.isEmpty(result.getPath()) ) {  
                 continue;  
             }  
