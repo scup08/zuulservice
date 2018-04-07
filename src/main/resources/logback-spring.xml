@@ -58,7 +58,9 @@
         <appender-ref ref="STDOUT"/>
     </logger>
 	 -->
-	<logger name="com.lzh.zuulservice.filter" level="WARN"/>
+	<logger name="com.lzh.zuulservice.filter" level="info">
+		<appender-ref ref="STDOUT"/>
+    </logger>
 	<!-- DEBUG WARN -->
 	<logger name="com.lzh.zuulservice.persistence" level="WARN"/>
 	

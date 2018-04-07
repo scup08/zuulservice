@@ -2,6 +2,8 @@ package com.lzh.zuulservice.model.entity;
 
 public class TGatewayApiDefine {
     private Long id;
+    
+    private String pathName;
 
     private String path;
 
@@ -80,4 +82,13 @@ public class TGatewayApiDefine {
     public void setRemarks(String remarks) {
         this.remarks = remarks == null ? null : remarks.trim();
     }
+
+	public String getPathName() {
+		return pathName;
+	}
+
+	public void setPathName(String pathName) {
+		this.pathName = pathName;
+	}
+    
 }

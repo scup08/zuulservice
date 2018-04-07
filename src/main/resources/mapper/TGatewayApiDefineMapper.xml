@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="TGatewayApiDefine">
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="path" jdbcType="VARCHAR" property="path" />
+    <result column="path_name" jdbcType="VARCHAR" property="pathName" />
     <result column="service_id" jdbcType="VARCHAR" property="serviceId" />
     <result column="url" jdbcType="VARCHAR" property="url" />
     <result column="retryable" jdbcType="BIT" property="retryable" />
@@ -12,7 +13,7 @@
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, `path`, service_id, url, retryable, enabled, strip_prefix, remarks
+    id, `path`, path_name , service_id, url, retryable, enabled, strip_prefix, remarks
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -28,10 +29,10 @@
     <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.Long">
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into t_gateway_api_define (id, `path`, service_id, 
+    insert into t_gateway_api_define (id, `path`, path_name ,service_id, 
       url, retryable, enabled, strip_prefix, 
       remarks)
-    values (#{id,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR}, #{serviceId,jdbcType=VARCHAR}, 
+    values (#{id,jdbcType=BIGINT}, #{path,jdbcType=VARCHAR},#{pathName,jdbcType=VARCHAR} , #{serviceId,jdbcType=VARCHAR}, 
       #{url,jdbcType=VARCHAR}, #{retryable,jdbcType=BIT}, #{enabled,jdbcType=BIT}, #{stripPrefix,jdbcType=BIT}, 
       #{remarks,jdbcType=VARCHAR})
   </insert>
@@ -44,6 +45,9 @@
       id,
       <if test="path != null">
         `path`,
+      </if>
+      <if test="pathName != null">
+        path_name,
       </if>
       <if test="serviceId != null">
         service_id,
@@ -68,6 +72,9 @@
       #{id,jdbcType=BIGINT},
       <if test="path != null">
         #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="pathName != null">
+      	#{path_name,jdbcType=VARCHAR},
       </if>
       <if test="serviceId != null">
         #{serviceId,jdbcType=VARCHAR},
@@ -95,6 +102,9 @@
       <if test="path != null">
         `path` = #{path,jdbcType=VARCHAR},
       </if>
+      <if test="pathName != null">
+        path_name = #{pathName,jdbcType=VARCHAR},
+      </if>
       <if test="serviceId != null">
         service_id = #{serviceId,jdbcType=VARCHAR},
       </if>
@@ -119,6 +129,7 @@
   <update id="updateByPrimaryKey" parameterType="TGatewayApiDefine">
     update t_gateway_api_define
     set `path` = #{path,jdbcType=VARCHAR},
+      path_name = #{pathName,jdbcType=VARCHAR},
       service_id = #{serviceId,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
       retryable = #{retryable,jdbcType=BIT},

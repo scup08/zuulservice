@@ -2,20 +2,22 @@ package com.lzh.zuulservice.filter;
 
 import javax.servlet.http.HttpServletRequest;
 
-//import org.apache.commons.codec.binary.Base64;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+//import org.apache.commons.codec.binary.Base64;
+//import org.slf4j.Logger;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+
+import ch.qos.logback.classic.Logger;
 
 /**
  * Created by  on 2017/7/13.
  */
 public class AccessFilter extends ZuulFilter {
 
-	private static Logger logger = LoggerFactory.getLogger(AccessFilter.class);
+	private static Logger logger = (Logger) LoggerFactory.getLogger(AccessFilter.class);
 
 	@Override
 	public String filterType() {
@@ -43,7 +45,7 @@ public class AccessFilter extends ZuulFilter {
 		Object token = request.getParameter("token");
 
 		// 校验token
-		if (token == null) {
+		if (token != null) {
 			logger.info("token为空，禁止访问!");
 			ctx.setSendZuulResponse(false);
 			ctx.setResponseStatusCode(401);
