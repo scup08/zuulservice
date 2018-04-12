@@ -9,8 +9,8 @@ spring:
     name: zuulservice
   datasource:
     #url: jdbc:mysql://47.93.193.177:3306/test?useSSL=false
-    #url: jdbc:mysql://192.168.26.128:3306/zuul_db?useSSL=false
-    url: jdbc:mysql://192.168.121.5:3306/zuul_db?useSSL=false
+    url: jdbc:mysql://192.168.26.128:3306/zuul_db?useSSL=false
+    #url: jdbc:mysql://192.168.121.5:3306/zuul_db?useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.jdbc.Driver
@@ -47,6 +47,13 @@ mybatis:
 #logging:
   #level:
     #com.lzh.zuulservice.persistence: DEBUG
+
+security.jwt:
+  tokenExpirationTime: 15 # Number of minutes
+  refreshTokenExpTime: 60 # Minutes
+  #tokenIssuer: http://svlada.com
+  tokenIssuer: lzh
+  tokenSigningKey: scup08
 
 #这里的配置表示，访问/baidu/** 直接重定向到http://www.baidu.com
 #zuul.routes.baidu.path=/baidu/**
