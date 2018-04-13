@@ -11,7 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 
-import com.lzh.zuulservice.security.config.JwtSettings;
+import com.lzh.common.util.JwtTokenUtil;
 import com.lzh.zuulservice.security.model.JwtAuthenticationToken;
 import com.lzh.zuulservice.security.model.JwtToken;
 import com.lzh.zuulservice.security.model.RawAccessJwtToken;
@@ -31,18 +31,16 @@ import io.jsonwebtoken.Jws;
 @Component
 @SuppressWarnings("unchecked")
 public class JwtAuthenticationProvider implements AuthenticationProvider {
-    private final JwtSettings jwtSettings;
-    
-    @Autowired
-    public JwtAuthenticationProvider(JwtSettings jwtSettings) {
-        this.jwtSettings = jwtSettings;
-    }
-
+	@Autowired
+    private JwtTokenUtil jwtTokenUtil;
+	
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
         RawAccessJwtToken rawAccessToken = (RawAccessJwtToken) authentication.getCredentials();
 
-        Jws<Claims> jwsClaims = rawAccessToken.parseClaims(jwtSettings.getTokenSigningKey());
+//        Jws<Claims> jwsClaims = rawAccessToken.parseClaims(jwtSettings.getTokenSigningKey());
+        Jws<Claims> jwsClaims = rawAccessToken.parseClaims(jwtTokenUtil.getSecret());
+//        Jws<Claims> jwsClaims = rawAccessToken.parseClaims("lzh");
         String subject = jwsClaims.getBody().getSubject();
         List<String> scopes = jwsClaims.getBody().get("scopes", List.class);
         List<GrantedAuthority> authorities = scopes.stream()
