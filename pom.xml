@@ -49,10 +49,12 @@
 	<build>
 		<finalName>zuulservice</finalName>
 		<plugins>
+		    <!-- 
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			 -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -61,6 +63,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			
 			<!-- 
 			<plugin>
 			    <groupId>org.mybatis.generator</groupId>
@@ -74,6 +77,23 @@
                 </configuration>  
 			</plugin>
 			 -->
+			 
+			 <!-- 最小打包 -->
+			<!--  -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>${common.jar.path}</classpathPrefix>
+							<mainClass>com.lzh.zuulservice.ZuulServiceApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			
 		</plugins>
 	</build>
 </project>

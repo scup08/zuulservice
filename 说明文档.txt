@@ -1,0 +1,8 @@
+#创建docker镜像   最后的. 代表Dockerfile当前目录
+#docker build -t scup08/zuulservice:1.0 .
+
+
+#新建并运行容器    -d 后台运行      -p 端口映射
+#docker run --name zuulservice-1.0 -d -p 9030:9030 -v /commonjars/zuulservice/lib:/commonjars/lib/ -v /root/docker/jre1.8.0_171:/usr/java/jre1.8.0_171 scup08/zuulservice:1.0
+
+docker exec -it id /bin/bash
