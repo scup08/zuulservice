@@ -1,4 +1,4 @@
-USE 'zuul_db';
+USE zuul_db;
 
 CREATE TABLE IF NOT EXISTS `zuul_db`.`t_gateway_api_define`(  
   `id` BIGINT(19) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT 'uuid',
